@@ -10,8 +10,8 @@ class ReaforcementLearnModel:
     def randomInitialState(self):
         return self.stateArray[np.random.randint(0, len(self.stateArray) - 1)]
 
-    def calculateQ(self, state, action):
-        pass
+    def calculateQ(self, state, action, max_value):
+        self.qMatrix[state, action] = self.rMatrix[state, action] + self.gamma * max_value
     
     def availableActions(self, state):
         current_state_row = self.rMatrix[state]
@@ -33,7 +33,7 @@ class ReaforcementLearnModel:
     def update(self, state, action):
         max_index = self.nextStepIndex(action)        
         max_value = self.qMatrix[action, max_index]
-        self.qMatrix[state, action] = self.rMatrix[state, action] + self.gamma * max_value
+        self.calculateQ(state, action, max_value)
 
     def training(self, _range):
         for i in range(_range):
