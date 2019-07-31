@@ -7,7 +7,7 @@ class Game:
         print('\n\n\t\t\t*******Game started*******')
         print('\nAgent Name: '+str(self.agent.name))
         print('Board:')
-        print(self.board)
+        self.drawBoard()
     
     def checkForWin(self, parameter_list):
         pass
@@ -23,3 +23,6 @@ class Game:
     
     def agentMove(self, action):
         pass
+    
+    def drawBoard(self):
+        print(self.board)
